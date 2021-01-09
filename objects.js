@@ -16,7 +16,7 @@ class Card {
     update(type, amount) {
         switch (type) {
             case "levelChange":
-                this.level += amount; // 0 -> 1 -> 2
+                this.level = amount; // 0 -> 1 -> 2
                 this.health = ceil(2 * 3 ** (this.level - 1)); // 1 -> 2 -> 6
                 this.damage = 2 ** this.level; // 1 -> 2 -> 4
                 this.reach = this.level * 2 + 3; // 3 -> 5 -> 7
@@ -53,7 +53,7 @@ class Cell {
                 this.card = null;
             }
             if (this.card.health <= 0) {
-                this.card.update("levelChange", -1);
+                this.card.update("levelChange", this.card.level-1);
             }
             if (this.card.level < 0) {
                 this.card = null;
